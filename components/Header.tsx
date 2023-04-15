@@ -23,8 +23,8 @@ export function Header() {
           <ion-icon name="person-outline" />
         </button>
         <div
-          className={`bg-white shadow overflow-hidden absolute right-0 top-8 rounded-lg py-4 w-48 transition-all ${
-            showDropDown ? "h-auto" : "h-0 py-0"
+          className={`bg-white overflow-hidden absolute right-0 top-8 rounded-lg py-4 transition-all ${
+            showDropDown ? "h-auto shadow w-48" : "h-0 py-0"
           }`}
         >
           {Links.map(({ title, icon, page }, index) => (
