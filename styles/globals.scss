@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    body {
+        @apply font-nunito leading-normal;
+    }
+
+    p {
+        @apply font-nunito text-sm leading-normal text-brand-text-body;
+    }
+
+    h1 {
+        @apply text-2xl font-black leading-normal text-brand-black font-nunito;
+    }
+
+    h3 {
+        @apply text-lg font-black leading-normal text-brand-black font-nunito;
+    }
+
+    button, button[type='button'] {
+        @apply button;
+    }
+}
+
+@layer components {
+    .button {
+        @apply text-white text-sm font-bold font-satoshi p-3 bg-brand-primary rounded-full px-6;
+
+        &-gray {
+            @apply bg-brand-black/10 text-brand-black;
+        }
+    }
+
+    .avatar{
+        @apply w-32 aspect-square rounded-full object-cover object-center p-0;
+
+        &-small {
+            @apply w-8 h-8;
+         }
+    }
+
+    .pill {
+        @apply p-2 px-4 text-sm font-bold text-white bg-brand-primary flex items-center gap-x-2 rounded-full;
+
+        .icon{
+            @apply w-6;
+        }
+
+        &-sm {
+            @apply py-1;
+        }
+    }
+}
