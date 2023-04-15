@@ -36,6 +36,7 @@ export function SkillSet() {
     <div className="py-6 flex flex-wrap gap-4">
       {skills.map(({ skill, icon, color }, index) => (
         <p key={index} className="pill" style={{ backgroundColor: color }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img alt="ss" src={icon} className={"icon"} />
           {skill}
         </p>

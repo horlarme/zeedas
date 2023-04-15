@@ -4,6 +4,9 @@ type ActivityType =
   | "certificate"
   | "oss-contribution";
 
+/**
+ * todo: Interface can be configured better.
+ */
 export interface ActivityProps<T extends ActivityType = any> {
   activity: T;
   date: string;
