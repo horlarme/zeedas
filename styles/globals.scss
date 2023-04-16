@@ -3,53 +3,120 @@
 @tailwind utilities;
 
 @layer base {
-    body {
-        @apply font-nunito leading-normal;
+  body {
+    @apply font-nunito leading-normal bg-brand-page-bg;
+  }
+
+  p {
+    @apply paragraph;
+  }
+
+  h1 {
+    @apply heading-1;
+  }
+
+  h3 {
+    @apply heading-3;
+  }
+
+  button,
+  button[type="button"] {
+    @apply button;
+  }
+
+  table {
+    @apply w-full table-auto text-brand-table-text;
+
+    thead {
+      tr {
+        td {
+          @apply text-xs font-extrabold py-2;
+        }
+      }
     }
 
-    p {
-        @apply font-nunito text-sm leading-normal text-brand-text-body;
-    }
+    tbody {
+      tr {
+        @apply border-b;
+        td {
+          @apply text-xs py-3;
+        }
 
-    h1 {
-        @apply text-2xl font-black leading-normal text-brand-black font-nunito;
-    }
+        &.openable {
+          @apply overflow-hidden cursor-pointer;
 
-    h3 {
-        @apply text-lg font-black leading-normal text-brand-black font-nunito;
-    }
+          & ~ .child {
+            //@apply hidden;
+          }
 
-    button, button[type='button'] {
-        @apply button;
+          &.opened {
+            @apply bg-brand-page-bg rounded-lg border-0;
+
+            & + .child {
+              @apply bg-brand-page-bg rounded-lg table-row;
+            }
+          }
+        }
+      }
     }
+  }
 }
 
 @layer components {
-    .button {
-        @apply text-white text-sm font-bold font-satoshi p-3 bg-brand-primary rounded-full px-6;
+  .heading-1 {
+    @apply text-2xl font-black leading-normal text-brand-black font-nunito;
+  }
 
-        &-gray {
-            @apply bg-brand-black/10 text-brand-black;
-        }
+  .heading-3 {
+    @apply text-lg font-black leading-normal text-brand-black font-nunito;
+  }
+
+  .paragraph {
+    @apply font-nunito text-sm leading-normal text-brand-text-body;
+  }
+
+  .button {
+    @apply text-white text-sm font-bold font-satoshi p-3 bg-brand-primary rounded-full px-6;
+
+    &-gray {
+      @apply bg-brand-black/10 text-brand-black;
+    }
+  }
+
+  .avatar {
+    @apply w-32 flex-shrink-0 flex-grow-0 aspect-square rounded-full object-cover object-center p-0 text-2xl font-extrabold grid place-items-center text-white;
+
+    &-small,
+    &-sm {
+      @apply w-8 h-8 text-xs;
     }
 
-    .avatar{
-        @apply w-32 aspect-square rounded-full object-cover object-center p-0;
+    &-md {
+      @apply w-10 h-10 text-base;
+    }
+  }
 
-        &-small {
-            @apply w-8 h-8;
-         }
+  .pill {
+    @apply p-2 px-4 text-sm font-bold text-white bg-brand-primary flex items-center gap-x-2 rounded-full;
+
+    .icon {
+      @apply w-6;
     }
 
-    .pill {
-        @apply p-2 px-4 text-sm font-bold text-white bg-brand-primary flex items-center gap-x-2 rounded-full;
-
-        .icon{
-            @apply w-6;
-        }
-
-        &-sm {
-            @apply py-1;
-        }
+    &-sm {
+      @apply py-1;
     }
+  }
+
+  .card {
+    @apply bg-white border rounded p-5 w-full;
+  }
+
+  .progress {
+    @apply w-full bg-brand-purple/[0.15] rounded-full h-1;
+
+    .bar {
+      @apply bg-brand-purple bg-blue-600 h-1 rounded-full;
+    }
+  }
 }

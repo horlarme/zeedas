@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Link from "next/link";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 const Links = [
   { title: "Home", icon: "home-outline", page: "/" },
@@ -8,36 +9,41 @@ const Links = [
 ];
 
 export function Header() {
+  const [dropDownContainerRef] = useAutoAnimate<HTMLDivElement>({
+    duration: 100,
+  });
   const [showDropDown, showDropDown_] = useState(false);
 
   return (
-    <nav className="container mx-auto py-7 flex justify-between">
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img className="w-12" src={"/logo.svg"} alt={"Logo"} />
+    <nav className="w-full border-b mb-10">
+      <div className="container mx-auto py-7 flex justify-between">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img className="w-12" src={"/logo.svg"} alt={"Logo"} />
 
-      <div className="relative">
-        <button
-          onClick={() => showDropDown_(!showDropDown)}
-          className="avatar avatar-small bg-brand-black/10 text-brand-black relative"
-        >
-          <ion-icon name="person-outline" />
-        </button>
-        <div
-          className={`bg-white overflow-hidden absolute right-0 top-8 rounded-lg py-4 transition-all ${
-            showDropDown ? "h-auto shadow w-48" : "h-0 py-0"
-          }`}
-        >
-          {Links.map(({ title, icon, page }, index) => (
-            <Link
-              onClick={() => showDropDown_(false)}
-              key={index}
-              href={page}
-              className="text-brand-black flex gap-x-4 p-4 items-center hover:text-brand-primary text-left"
+        <div className="relative" ref={dropDownContainerRef}>
+          <button
+            onClick={() => showDropDown_(!showDropDown)}
+            className="avatar avatar-small bg-brand-black/10 text-brand-black relative"
+          >
+            <ion-icon name="person-outline" />
+          </button>
+          {showDropDown ? (
+            <div
+              className={`bg-white overflow-hidden absolute right-0 top-8 rounded-lg py-4 transition-all shadow w-48`}
             >
-              <ion-icon name={icon} />
-              {title}
-            </Link>
-          ))}
+              {Links.map(({ title, icon, page }, index) => (
+                <Link
+                  onClick={() => showDropDown_(false)}
+                  key={index}
+                  href={page}
+                  className="text-brand-black flex gap-x-4 p-4 items-center hover:text-brand-primary text-left"
+                >
+                  <ion-icon name={icon} />
+                  {title}
+                </Link>
+              ))}
+            </div>
+          ) : null}
         </div>
       </div>
     </nav>
